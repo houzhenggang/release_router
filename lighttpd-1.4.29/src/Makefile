@@ -533,7 +533,7 @@ AWK = gawk
 BZ_LIB = 
 CC = mipsel-uclibc-gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../pcre-8.12 -I/opt/brcm/K26/hndtools-mipsel-uclibc-4.2.4/include -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../sqlite -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../../include -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../nvram -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../shared -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../libdisk -DHAVE_OPENSSL_SSL_H=1 -DHAVE_LIBSSL=1 -DEMBEDDED_EANBLE=1 -Wall -W -Wshadow -pedantic -std=gnu99 $(LIBSMBCLIENT_CFLAGS) $(XML_CFLAGS)
+CFLAGS = -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../pcre-8.12 -I/opt/brcm/hndtools-mipsel-uclibc-4.2.4/include -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../sqlite -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../../include -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../nvram -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../shared -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../libdisk -DHAVE_OPENSSL_SSL_H=1 -DHAVE_LIBSSL=1 -DEMBEDDED_EANBLE=1 -Wall -W -Wshadow -pedantic -std=gnu99 $(LIBSMBCLIENT_CFLAGS) $(XML_CFLAGS)
 CPP = mipsel-uclibc-gcc -E
 CPPFLAGS =  -D_REENTRANT -D__EXTENSIONS__ -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl/include -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl/include/openssl -DOPENSSL_NO_KRB5  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES
 CRYPT_LIB = -lcrypt
@@ -561,11 +561,11 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LBER_LIB = 
 LD = mipsel-uclibc-ld
 LDAP_LIB = 
-LDFLAGS = -L/opt/brcm/K26/hndtools-mipsel-uclibc-4.2.4/lib -ldl -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../pcre-8.12/.libs -lpcre -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../libxml2/.libs -lxml2 -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl/lib -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl/
+LDFLAGS = -L/opt/brcm/hndtools-mipsel-uclibc-4.2.4/lib -ldl -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../pcre-8.12/.libs -lpcre -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../libxml2/.libs -lxml2 -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl/lib -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../openssl/
 LIBEV_CFLAGS = 
 LIBEV_LIBS = 
 LIBOBJS =  ${LIBOBJDIR}lstat$U.o ${LIBOBJDIR}stat$U.o
-LIBS = -L/opt/brcm/K26/hndtools-mipsel-uclibc-4.2.4/lib -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../shared -lshared -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../nvram -lnvram -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../libdisk -ldisk $(LIBSMBCLIENT_LIBS) $(XML_LIBS) $(SHARED_LIBS)
+LIBS = -L/opt/brcm/hndtools-mipsel-uclibc-4.2.4/lib -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../shared -lshared -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../nvram -lnvram -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../libdisk -ldisk $(LIBSMBCLIENT_LIBS) $(XML_LIBS) $(SHARED_LIBS)
 LIBSMBCLIENT_CFLAGS = -I/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../samba-3.5.8/source3/include
 LIBSMBCLIENT_LIBS = -L/work/test/asuswrt/release/src/router/lighttpd-1.4.29/../samba-3.5.8/source3/bin -lsmbclient
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
