@@ -318,10 +318,8 @@ endif
 
 obj-$(RTCONFIG_BWDPI) += bwdpi
 obj-$(RTCONFIG_BWDPI) += sqlite
-obj-$(RTCONFIG_BWDPI) += bwdpi_sqlite
 obj-$(RTCONFIG_BWDPI) += bwdpi_bin
 obj-$(RTCONFIG_SPEEDTEST) += curl-7.21.7
-obj-$(RTCONFIG_TRAFFIC_CONTROL) += traffic_control
 
 obj-y += rc
 obj-y += rom
@@ -371,7 +369,6 @@ obj-y += libbcmcrypto
 #obj-y += cyassl
 obj-$(RTCONFIG_HTTPS) += mssl
 #obj-y += mdu
-obj-$(RTCONFIG_TFTP) += tftp
 
 # !!TB
 ifeq ($(RTCONFIG_USB),y)
@@ -615,7 +612,6 @@ obj-$(RTCONFIG_STRACE) += strace
 obj-$(RTCONFIG_GDB) += gdb
 obj-$(RTCONFIG_LLDP) += openlldp
 
-obj-n += lsof
 obj-$(RTCONFIG_IPERF) += iperf
 
 obj-$(RTCONFIG_PUSH_EMAIL) += zlib # for libxml2, curl.
@@ -628,8 +624,6 @@ obj-$(RTCONFIG_PUSH_EMAIL) += push_log
 
 obj-$(RTCONFIG_NORTON) += norton${BCMEX}
 
-obj-$(UBI) += mtd-utils
-obj-$(UBIFS) += mtd-utils
 obj-$(UBIFS) += util-linux lzo zlib
 ifeq ($(RTCONFIG_RALINK),y)
 obj-$(RA_SKU) += ra_SingleSKU
@@ -1292,7 +1286,7 @@ busybox-config:
 
 infosvr: shared nvram${BCMEX}
 
-httpd: shared nvram$(BCMEX) libdisk $(if $(RTCONFIG_HTTPS),mssl) $(if $(RTCONFIG_PUSH_EMAIL),push_log) $(if $(RTCONFIG_BWDPI),bwdpi) $(if $(RTCONFIG_BWDPI),bwdpi_sqlite) json-c
+httpd: shared nvram$(BCMEX) libdisk $(if $(RTCONFIG_HTTPS),mssl) $(if $(RTCONFIG_PUSH_EMAIL),push_log) $(if $(RTCONFIG_BWDPI),bwdpi) json-c
 
 	@$(SEP)
 	@$(MAKE) -C httpd
@@ -1949,38 +1943,6 @@ libdaemon-install: libdaemon
 libdaemon-clean:
 	-@$(MAKE) -C libdaemon distclean
 	@rm -f libdaemon/stamp-h1
-
-lsof: lsof/Makefile
-	@$(SEP)
-	$(MAKE) -C $@
-
-lsof/Makefile:
-	( cd lsof ; \
-		LSOF_CC=$(CC) \
-		LSOF_INCLUDE=$(TOOLCHAIN)/include \
-		LSOF_VSTR="asuswrt" \
-		./Configure -n linux \
-	)
-
-lsof-install:
-	install -D lsof/lsof $(INSTALLDIR)/lsof/usr/sbin/lsof
-	$(STRIP) $(INSTALLDIR)/lsof/usr/sbin/lsof
-
-lsof-clean:
-	( cd lsof ; ./Configure -clean )
-	@rm -f lsof/Makefile
-
-mtd-utils: util-linux lzo zlib
-	$(MAKE) CPPFLAGS="-I$(STAGEDIR)/usr/include" \
-		CFLAGS="-I$(TOP)/mtd-utils/include  -I$(TOP)/mtd-utils/ubi-utils/include" \
-		LDFLAGS="-L$(STAGEDIR)/usr/lib" \
-		WITHOUT_XATTR=1 -C $@
-
-mtd-utils-install:
-	$(MAKE) WITHOUT_XATTR=1 WITHOUT_LZO=1 DESTDIR=$(INSTALLDIR)/mtd-utils -C mtd-utils install
-
-mtd-utils-clean:
-	$(MAKE) -C mtd-utils clean
 
 util-linux: util-linux/Makefile
 	$(MAKE) -C $@/libuuid/src && $(MAKE) $@-stage
@@ -3787,38 +3749,8 @@ netstat-nat: netstat-nat/stamp-h1
 netstat-nat: netstat-nat/Makefile
 	$(MAKE) -C netstat-nat
 
-tftp:
-	cd tftp && CC=$(CC) && $(MAKE)
-
-tftp-clean:
-	cd tftp && $(MAKE) clean
-
-tftp-install:
-	# TPTP server
-	install -D tftp/tftpd $(INSTALLDIR)/tftp/usr/sbin/tftpd
-	$(STRIP) -s $(INSTALLDIR)/tftp/usr/sbin/tftpd
-	# TFTP client
-	#install -D tftp/tftpc $(INSTALLDIR)/tftp/usr/sbin/tftpc
-	#$(STRIP) -s $(INSTALLDIR)/tftp/usr/sbin/tftpc
-
 bwdpi: nvram$(BCMEX)
 	cd bwdpi && CC=$(CC) && $(MAKE)
-
-bwdpi_sqlite: bwdpi sqlite
-	cd bwdpi_sqlite && CC=$(CC) && $(MAKE)
-
-bwdpi_sqlite-clean:
-	cd bwdpi_sqlite && $(MAKE) clean
-
-bwdpi_sqlite-install: bwdpi_sqlite
-
-traffic_control: sqlite
-	cd traffic_control && CC=$(CC) && $(MAKE)
-
-traffic_control-clean:
-	cd traffic_control && $(MAKE) clean
-
-traffic_control-install: traffic_control
 
 NORTON_DIR := $(SRCBASE)/router/norton${BCMEX}
 
