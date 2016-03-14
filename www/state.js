@@ -463,9 +463,20 @@ var realip_state = "";
 var realip_ip = "";
 var external_ip = 0;
 
-var banner_code, menu_code="", menu1_code="", menu2_code="", tab_code="", footer_code;
+var banner_code, menu_code="", menu1_code="", menu2_code="", tab_code="", footer_code, title_code;
 function show_banner(L3){// L3 = The third Level of Menu
 	var banner_code = "";
+	var title_code = "";
+
+	title_code +='<div class="mdl-layout__header-row">\n';
+	title_code +='<span class="mdl-layout-title"><img src="images/New_ui/asustitle.png" align="left"></span>\n';
+	title_code +='<div class="mdl-layout-spacer"></div>\n';
+	title_code +='<nav class="mdl-navigation">\n';
+	title_code +='<% shown_language_css(); %>\n';
+	title_code +='<a class="mdl-navigation__link" href="javascript:logout();"><#t1Logout#></a>\n';
+	title_code +='<a class="mdl-navigation__link" href="javascript:reboot();"><#BTN_REBOOT#></a>\n';
+	title_code +='</nav>\n';
+	title_code +='</div>\n';
 
 	// creat a hidden iframe to cache offline page
 	banner_code +='<iframe width="0" height="0" frameborder="0" scrolling="no" src="/manifest.asp"></iframe>';
@@ -552,76 +563,67 @@ function show_banner(L3){// L3 = The third Level of Menu
 		banner_code +='</form>\n';
 	}	
 
-	banner_code +='<div class="banner1" align="center"><img src="images/New_ui/asustitle.png" width="218" height="54" align="left">\n';
-	banner_code +='<div style="margin-top:13px;margin-left:-90px;*margin-top:0px;*margin-left:0px;" align="center"><span id="modelName_top" onclick="this.focus();" class="modelName_top"><#Web_Title2#></span></div>';
-
-	// logout, reboot
-	banner_code +='<a href="javascript:logout();"><div style="margin-top:13px;margin-left:25px; *width:136px;" class="titlebtn" align="center"><span><#t1Logout#></span></div></a>\n';
-	banner_code +='<a href="javascript:reboot();"><div style="margin-top:13px;margin-left:0px;*width:136px;" class="titlebtn" align="center"><span><#BTN_REBOOT#></span></div></a>\n';
-
-	// language
-	banner_code +='<ul class="navigation">';
-	banner_code +='<% shown_language_css(); %>';
-	banner_code +='</ul>';
-
+	banner_code +='<div class="banner1" align="center">\n';
 	banner_code +='</div>\n';
-	banner_code +='<table width="998" border="0" align="center" cellpadding="0" cellspacing="0" class="statusBar">\n';
-	banner_code +='<tr>\n';
-	banner_code +='<td background="images/New_ui/midup_bg.png" height="179" valign="top"><table width="764" border="0" cellpadding="0" cellspacing="0" height="35px" style="margin-left:230px;">\n';
-	banner_code +='<tbody><tr>\n';
- 	banner_code +='<td valign="center" class="titledown" width="auto">';
+
+        // Router status moved to Title Bar
+	title_code +='<div class="mdl-layout__header-row">\n';
+	title_code +='<table border="0" align="center" cellpadding="0" cellspacing="0" class="statusBar">\n';
+ 	title_code +='<td valign="center" class="titledown" width="auto">';
 
 	// dsl does not support operation mode
 	if (!dsl_support) {
-		banner_code +='<span style="font-family:Verdana, Arial, Helvetica, sans-serif;"><#menu5_6_1_title#>:</sapn><span class="title_link" style="text-decoration: none;" id="op_link"><a href="/Advanced_OperationMode_Content.asp" style="color:white"><span id="sw_mode_span" style="text-decoration: underline;"></span></a></span>\n';
+		title_code +='<span><#menu5_6_1_title#>:</span><span id="op_link"><a href="/Advanced_OperationMode_Content.asp"><span id="sw_mode_span" class="title_link"></span></a></span>\n';
 	}
-	banner_code +='<span style="font-family:Verdana, Arial, Helvetica, sans-serif;"><#General_x_FirmwareVersion_itemname#></sapn><a href="/Advanced_FirmwareUpgrade_Content.asp" style="color:white;"><span id="firmver" class="title_link"></span></a>\n';
-	banner_code +='<span style="font-family:Verdana, Arial, Helvetica, sans-serif;" id="ssidTitle">SSID:</sapn>';
-	banner_code +='<span onclick="change_wl_unit_status(0)" id="elliptic_ssid_2g" class="title_link"></span>';
-	banner_code +='<span onclick="change_wl_unit_status(1)" id="elliptic_ssid_5g" class="title_link"></span>\n';
+	title_code +='<span><#General_x_FirmwareVersion_itemname#></span><a href="/Advanced_FirmwareUpgrade_Content.asp"><span id="firmver" class="title_link"></span></a>\n';
+	title_code +='<span id="ssidTitle">SSID:</span>';
+	title_code +='<span onclick="change_wl_unit_status(0)" id="elliptic_ssid_2g" class="title_link"></span>';
+	title_code +='<span onclick="change_wl_unit_status(1)" id="elliptic_ssid_5g" class="title_link"></span>\n';
 	if(wl_info.band5g_2_support)
-		banner_code +='<span onclick="change_wl_unit_status(2)" id="elliptic_ssid_5g_2" class="title_link"></span>\n';
-	banner_code +='</td>\n';
+		title_code +='<span onclick="change_wl_unit_status(2)" id="elliptic_ssid_5g_2" class="title_link"></span>\n';
+	title_code +='</td>\n';
 
-	banner_code +='<td width="30" id="notification_status1" class="notificationOn"><div id="notification_status" class="notificationOn"></div><div id="notification_desc" class=""></div></td>\n';
+	title_code +='<td width="30" id="notification_status1" class="notificationOn"><div id="notification_status" class="notificationOn"></div><div id="notification_desc" class=""></div></td>\n';
 	
 	if(bwdpi_support && qos_enable_flag && qos_type_flag == "1")
-		banner_code +='<td width="30"><div id="bwdpi_status" class=""></div></td>\n';	
+		title_code +='<td width="30"><div id="bwdpi_status" class=""></div></td>\n';	
 		
 	if(wifi_hw_sw_support)
-		banner_code +='<td width="30"><div id="wifi_hw_sw_status" class="wifihwswstatusoff"></div></td>\n';
+		title_code +='<td width="30"><div id="wifi_hw_sw_status" class="wifihwswstatusoff"></div></td>\n';
 
 	if(cooler_support)
-		banner_code +='<td width="30"><div id="cooler_status" class="" style="display:none;"></div></td>\n';
+		title_code +='<td width="30"><div id="cooler_status" class="" style="display:none;"></div></td>\n';
 
 	if(multissid_support != -1)
-		banner_code +='<td width="30"><div id="guestnetwork_status" class="guestnetworkstatusoff"></div></td>\n';
+		title_code +='<td width="30"><div id="guestnetwork_status" class="guestnetworkstatusoff"></div></td>\n';
 
 	if(dsl_support)
-		banner_code +='<td width="30"><div id="adsl_line_status" class="linestatusdown"></div></td>\n';
+		title_code +='<td width="30"><div id="adsl_line_status" class="linestatusdown"></div></td>\n';
 
 	if(sw_mode != 3)
-		banner_code +='<td width="30"><div id="connect_status" class="connectstatusoff"></div></td>\n';
+		title_code +='<td width="30"><div id="connect_status" class="connectstatusoff"></div></td>\n';
 
 	if(usb_support)
-		banner_code +='<td width="30"><div id="usb_status"></div></td>\n';
+		title_code +='<td width="30"><div id="usb_status"></div></td>\n';
 	
 	if(printer_support)
-		banner_code +='<td width="30" style="display:none"><div id="printer_status" class="printstatusoff"></div></td>\n';
+		title_code +='<td width="30" style="display:none"><div id="printer_status" class="printstatusoff"></div></td>\n';
 
 	/* Cherry Cho added in 2014/8/22. */
 	if(((modem_support && hadPlugged("modem")) || gobi_support) && (usb_index != -1) && (sim_state != "")){	
-		banner_code +='<td width="30"><div id="sim_status" class="simnone"></div></td>\n';
+		title_code +='<td width="30"><div id="sim_status" class="simnone"></div></td>\n';
 	}	
 
 	if(gobi_support && (usb_index != -1) && (sim_state != "")){
-		banner_code +='<td width="30"><div id="simsignal" class="simsignalno"><div class="img_wrap"><div id="signalsys" class="signalsysimg"></div></div></div></td>\n';
+		title_code +='<td width="30"><div id="simsignal" class="simsignalno"><div class="img_wrap"><div id="signalsys" class="signalsysimg"></div></div></div></td>\n';
 		if(roaming == "1")
-			banner_code +='<td width="30"><div id="simroaming_status" class="simroamingoff"></div></td>\n';		
+			title_code +='<td width="30"><div id="simroaming_status" class="simroamingoff"></div></td>\n';		
 	}
-	
-	banner_code +='<td width="17"></td>\n';
-	banner_code +='</tr></tbody></table></td></tr></table>\n';
+
+	title_code +='</tr></tbody></table>\n';
+	title_code +='</div>\n';
+
+	document.getElementById("asusTitle").innerHTML = title_code;
 
 	/* Traffic Limit Warning*/
 	var setCookie = 0;
@@ -1442,27 +1444,27 @@ function show_menu(){
 	// QIS wizard
 	if(sw_mode == 2){
 		if(wlc_express == '1'){
-			menu1_code += '<div class="m_qis_r" style="margin-top:-170px;cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_exp2\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
+			menu1_code += '<div class="m_qis_r" style="cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_exp2\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
 		}
 		else if(wlc_express == '2'){
-			menu1_code += '<div class="m_qis_r" style="margin-top:-170px;cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_exp5\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
+			menu1_code += '<div class="m_qis_r" style="cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_exp5\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
 		}
 		else{
-			menu1_code += '<div class="m_qis_r" style="margin-top:-170px;cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_rep\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
+			menu1_code += '<div class="m_qis_r" style="cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_rep\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
 		}
 	}else if(sw_mode == 3){
-		menu1_code += '<div class="m_qis_r" style="margin-top:-170px;cursor:pointer;" onclick="go_setting(\''+ QISWIZARD +'?flag=lanip\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n'; 	
+		menu1_code += '<div class="m_qis_r" style="cursor:pointer;" onclick="go_setting(\''+ QISWIZARD +'?flag=lanip\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n'; 	
 	}else if(sw_mode == 4){
-		menu1_code += '<div class="m_qis_r" style="margin-top:-170px;cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_mb\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
+		menu1_code += '<div class="m_qis_r" style="cursor:pointer;" onclick="go_setting(\'/'+ QISWIZARD +'?flag=sitesurvey_mb\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
 	}else{
 		if(tmo_support && isMobile())
-			menu1_code += '<div class="m_qis_r" style="margin-top:-170px;cursor:pointer;" onclick="go_setting(\''+ QISWIZARD +'?flag=wireless\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
+			menu1_code += '<div class="m_qis_r" style="cursor:pointer;" onclick="go_setting(\''+ QISWIZARD +'?flag=wireless\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
 		else
-			menu1_code += '<div class="m_qis_r" style="margin-top:-170px;cursor:pointer;" onclick="go_setting(\''+ QISWIZARD +'?flag=detect\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
+			menu1_code += '<div class="m_qis_r" style="cursor:pointer;" onclick="go_setting(\''+ QISWIZARD +'?flag=detect\');"><table><tr><td><div id="index_img0"></div></td><td><div><#QIS#></div></td></tr></table></div>\n';
 	}	
 
 	// Feature
-	menu1_code += '<div class="m0_r" style="margin-top:10px;" id="option0"><table width="192px" height="37px"><tr><td><#menu5_1_1#></td></tr></table></div>\n';
+	menu1_code += '<div class="m0_r" id="option0"><table><tr><td><#menu5_1_1#></td></tr></table></div>\n';
 	for(i = 1; i <= menuL1_title.length-2; i++){
 		if(menuL1_title[i] == ""){
 			calculate_height--;
@@ -1470,17 +1472,18 @@ function show_menu(){
 		}
 		else if(L1 == i && (L2 <= 0 || L2 == traffic_L2_dx)){		//clicked
 			var clicked_manu = "_" + menuL1_link[i].split('.')[0];
-			menu1_code += '<div class="menu_clicked" id="'+ clicked_manu +'">'+'<table><tr><td><div class="'+clicked_manu+'"></div></td><td><div id="menu_string'+i+'" style="width:120px;">'+menuL1_title[i]+'</div></td></tr></table></div>\n';
+			menu1_code += '<div class="menu_clicked" id="'+ clicked_manu +'">'+'<table><tr><td><div class="'+clicked_manu+'"></div></td><td><div id="menu_string'+i+'">'+menuL1_title[i]+'</div></td></tr></table></div>\n';
 		}
 		else{		//non-click	
 			var menu_type = "_" + menuL1_link[i].split('.')[0];
-			menu1_code += '<div class="menu"  id="'+ menu_type +'" onclick="location.href=\''+menuL1_link[i]+'\'" style="cursor:pointer;"><table><tr><td><div class="'+menu_type+'"></div></td><td><div id="menu_string" style="width:120px;">'+menuL1_title[i]+'</div></td></tr></table></div>\n';
+			menu1_code += '<div class="menu"  id="'+ menu_type +'" onclick="location.href=\''+menuL1_link[i]+'\'" style="cursor:pointer;"><table><tr><td><div class="'+menu_type+'"></div></td><td><div id="menu_string">'+menuL1_title[i]+'</div></td></tr></table></div>\n';
 		}
 	}
-	menu1_code += '<div class="m0_r" id="option0">'+'<table width="192px" height="37px"><tr><td><#menu5#></td></tr></table></div>\n'; 	
+
 	document.getElementById("mainMenu").innerHTML = menu1_code;
 
 	// Advanced
+	menu2_code += '<div class="m0_r" id="option0">'+'<table><tr><td><#menu5#></td></tr></table></div>\n';
 	if(L2 != -1){ 	
 		for(var i = 1; i < menuL2_title.length; ++i){
 			if(menuL2_link[i] == "Advanced_Wireless_Content.asp" && "<% nvram_get("wl_subunit"); %>" != "0" && "<% nvram_get("wl_subunit"); %>" != "-1")
@@ -1490,9 +1493,9 @@ function show_menu(){
 				continue;
 			}
 			else if(L2 == i){
-				menu2_code += '<div class="menu_clicked" id="option'+i+'">'+'<table><tr><td><div id="menu_img'+i+'"></div></td><td><div id="option_str1" style="width:120px;">'+menuL2_title[i]+'</div></td></tr></table></div>\n';
+				menu2_code += '<div class="menu_clicked" id="option'+i+'">'+'<table><tr><td><div id="menu_img'+i+'"></div></td><td><div id="option_str1">'+menuL2_title[i]+'</div></td></tr></table></div>\n';
 			}else{		
-				menu2_code += '<div class="menu" id="option'+i+'" onclick="location.href=\''+menuL2_link[i]+'\'" style="cursor:pointer;"><table><tr><td><div id="menu_img'+i+'"></div></td><td><div id="option_str1" style="width:120px;">'+menuL2_title[i]+'</div></td></tr></table></div>\n';
+				menu2_code += '<div class="menu" id="option'+i+'" onclick="location.href=\''+menuL2_link[i]+'\'" style="cursor:pointer;"><table><tr><td><div id="menu_img'+i+'"></div></td><td><div id="option_str1">'+menuL2_title[i]+'</div></td></tr></table></div>\n';
 			}	
 		}
 	}

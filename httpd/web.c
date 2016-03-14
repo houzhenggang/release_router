@@ -6264,7 +6264,7 @@ int ej_shown_language_css(int eid, webs_t wp, int argc, char **argv){
 
 	memset(lang, 0, 4);
 	strcpy(lang, nvram_safe_get("preferred_lang"));
-	websWrite(wp, "<li><dl><a href=\"#\"><dt id=\"selected_lang\"></dt></a>\\n");
+	websWrite(wp, "<div class=\"mdl-navigation__link\" id=\"language-menu\" style=\"cursor:pointer;\"><span id=\"selected_lang\"></span></div>\\n<ul class=\"mdl-menu mdl-js-menu\" for=\"language-menu\">\\n");
 	while (1) {
 		memset(buffer, 0, sizeof(buffer));
 		if ((follow_info = fgets(buffer, sizeof(buffer), fp)) != NULL){
@@ -6289,7 +6289,7 @@ int ej_shown_language_css(int eid, webs_t wp, int argc, char **argv){
 				memset(target, 0, sizeof(target));
 				strncpy(target, follow_info, len);
 				if (check_lang_support(key) && strcmp(key,lang))
-					websWrite(wp, "<dd><a onclick=\"submit_language(this)\" id=\"%s\">%s</a></dd>\\n", key, target);
+					websWrite(wp, "<li class=\"mdl-menu__item\"><a onclick=\"submit_language(this)\" id=\"%s\">%s</a></li>\\n", key, target);
 				break;
 			}
 		}
@@ -6297,7 +6297,7 @@ int ej_shown_language_css(int eid, webs_t wp, int argc, char **argv){
 			break;
 
 	}
-	websWrite(wp, "</dl></li>\\n");
+	websWrite(wp, "</ul>\\n");
 	fclose(fp);
 
 	return 0;

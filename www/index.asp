@@ -1898,9 +1898,32 @@ function setDefaultIcon() {
 	select_image("type" + parseInt(clientList[mac].defaultType));
 }
 </script>
+
+<link rel="stylesheet" href="/material/material-icons.css">
+<link rel="stylesheet" href="/material/material.teal-deep_purple.min.css">
+<script defer src="/material/material.min.js"></script>
 </head>
 
 <body onunload="return unload_body();">
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+<header id="asusTitle" class="mdl-layout__header">
+</header>
+
+<div class="mdl-layout__drawer">
+	<span class="mdl-layout-title"><#Web_Title2#></span>
+	<nav class="mdl-navigation">
+		<!--=====Beginning of Main Menu=====-->
+		<div id="mainMenu" class="mdl-list">
+		</div>
+		<div id="subMenu" class="mdl-list">
+		</div>
+	</nav>
+</div>
+
+<main class="mdl-layout__content">
+<div class="page-content">
+
 <noscript>
 	<div class="popup_bg" style="visibility:visible; z-index:999;">
 		<div style="margin:200px auto; width:300px; background-color:#006699; color:#FFFFFF; line-height:150%; border:3px solid #FFF; padding:5px;"><#not_support_script#></p></div>
@@ -2201,17 +2224,10 @@ function setDefaultIcon() {
   <tr>
 	<td valign="top" width="17">&nbsp;</td>
 		
-		<!--=====Beginning of Main Menu=====-->
-		<td valign="top" width="204">
-			<div id="mainMenu"></div>
-			<div id="subMenu"></div>
-		</td>
-		
 		<td align="left" valign="top" class="bgarrow">
 		
 		<!--=====Beginning of Network Map=====-->
 		<div id="tabMenu"></div><br>
-		<div id="NM_shift" style="margin-top:-155px;"></div>
 		<div id="NM_table" class="NM_table" >
 		<div id="NM_table_div">
 			<table id="_NM_table" border="0" cellpadding="0" cellspacing="0" height="720" style="opacity:.95;" >
@@ -2421,5 +2437,9 @@ function setDefaultIcon() {
 	}
 	cookie.set("nwmapRefreshTime", JS_timeObj.getTime(), 1);
 </script>
+
+</div>  <!-- page-content -->
+</main> <!-- mdl-layout__content -->
+</div>  <!-- mdl-layout -->
 </body>
 </html>

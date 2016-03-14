@@ -116,9 +116,32 @@ function detect_httpd(){
 }
 
 </script>
+
+<link rel="stylesheet" href="/material/material-icons.css">
+<link rel="stylesheet" href="/material/material.teal-deep_purple.min.css">
+<script defer src="/material/material.min.js"></script>
 </head>
 
 <body onload="initial();">
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+<header id="asusTitle" class="mdl-layout__header">
+</header>
+
+<div class="mdl-layout__drawer">
+	<span class="mdl-layout-title"><#Web_Title2#></span>
+	<nav class="mdl-navigation">
+		<!--=====Beginning of Main Menu=====-->
+		<div id="mainMenu" class="mdl-list">
+		</div>
+		<div id="subMenu" class="mdl-list">
+		</div>
+	</nav>
+</div>
+
+<main class="mdl-layout__content">
+<div class="page-content">
+
 <div id="TopBanner"></div>
 
 <div id="LoadingBar" class="popup_bar_bg">
@@ -247,5 +270,9 @@ function detect_httpd(){
 <input type="hidden" name="action_mode" value="Restore">
 <input type="hidden" name="next_page" value="">
 </form>
+
+</div>  <!-- page-content -->
+</main> <!-- mdl-layout__content -->
+</div>  <!-- mdl-layout -->
 </body>
 </html>

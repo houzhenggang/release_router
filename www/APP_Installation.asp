@@ -853,9 +853,32 @@ function go_modem_page(usb_unit_flag){
 	location.herf = default_apps_array[3][1];
 }
 </script>
+
+<link rel="stylesheet" href="/material/material-icons.css">
+<link rel="stylesheet" href="/material/material.teal-deep_purple.min.css">
+<script defer src="/material/material.min.js"></script>
 </head>
 
 <body onload="initial();" onunload="unload_body();">
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+<header id="asusTitle" class="mdl-layout__header">
+</header>
+
+<div class="mdl-layout__drawer">
+	<span class="mdl-layout-title"><#Web_Title2#></span>
+	<nav class="mdl-navigation">
+		<!--=====Beginning of Main Menu=====-->
+		<div id="mainMenu" class="mdl-list">
+		</div>
+		<div id="subMenu" class="mdl-list">
+		</div>
+	</nav>
+</div>
+
+<main class="mdl-layout__content">
+<div class="page-content">
+
 <div id="TopBanner"></div>
 <div id="Loading" class="popup_bg"></div>
 
@@ -879,12 +902,6 @@ function go_modem_page(usb_unit_flag){
 <table class="content" align="center" cellspacing="0" style="margin:auto;">
   <tr>
 	<td width="17">&nbsp;</td>
-	
-	<!--=====Beginning of Main Menu=====-->
-	<td valign="top" width="202">
-	  <div id="mainMenu"></div>
-	  <div id="subMenu"></div>
-	</td>
 	
     <td valign="top">
 		<div id="tabMenu" style="*margin-top: -160px;"></div>
@@ -990,6 +1007,10 @@ function go_modem_page(usb_unit_flag){
 <input type="hidden" name="wan_unit" value="">
 <input type="hidden" name="current_page" value="Advanced_Modem_Content.asp">
 </form>
+
+</div>  <!-- page-content -->
+</main> <!-- mdl-layout__content -->
+</div>  <!-- mdl-layout -->
 </body>
 </html>
 
