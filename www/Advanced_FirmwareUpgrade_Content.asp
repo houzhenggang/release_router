@@ -436,10 +436,9 @@ function sig_check_status(){
 
 <table class="content" align="center" cellpadding="0" cellspacing="0">
 	<tr>
-		<td width="17">&nbsp;</td>
 
     <td valign="top">
-	<div id="tabMenu" class="submenuBlock"></div>
+	<div id="tabMenu" class="mdl-tabs mdl-js-ripple-effect"></div>
 		<!--===================================Beginning of Main Content===========================================-->
 <table width="98%" border="0" align="left" cellpadding="0" cellspacing="0">
 	<tr>
@@ -448,7 +447,7 @@ function sig_check_status(){
 		<table width="760px" border="0" cellpadding="5" cellspacing="0" class="FormTitle" id="FormTitle">
 		<tbody>
 		<tr>
-		  <td bgcolor="#4D595D" valign="top"  >
+		  <td valign="top"  >
 		  <div>&nbsp;</div>
 		  <div class="formfonttitle"><#menu5_6#> - <#menu5_6_3#></div>
 		  <div style="margin-left:5px;margin-top:10px;margin-bottom:10px"><img src="/images/New_ui/export/line_export.png"></div>
@@ -507,7 +506,10 @@ function sig_check_status(){
 			<tr>
 				<th><#FW_item2#></th>
 				<td><input type="text" name="firmver_table" class="input_20_table" value="<% nvram_get("firmver"); %>.<% nvram_get("buildno"); %>_<% nvram_get("extendno"); %>" readonly="1" autocorrect="off" autocapitalize="off">&nbsp&nbsp&nbsp<!--/td-->
-						<input type="button" id="update" name="update" class="button_gen" style="display:none;" onclick="detect_update();" value="<#liveupdate#>" />
+					<!--	<input type="button" id="update" name="update" class="button_gen" style="display:none;" onclick="detect_update();" value="<#liveupdate#>" /> -->
+						<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="update" onclick="detect_update();">
+						<#liveupdate#>
+						</button>
 						<div id="linkpage_div" class="button_helplink" style="margin-left:200px;margin-top:-25px;display:none;"><a id="linkpage" target="_blank"><div style="padding-top:5px;"><#liveupdate#></div></a></div>
 						<div id="check_states">
 								<span id="update_states"></span>
@@ -520,7 +522,10 @@ function sig_check_status(){
 				<td><input type="file" name="file" class="input" style="color:#FFCC00;*color:#000;width: 300px;"></td>
 			</tr>
 			<tr align="center">
-			  <td colspan="2"><input type="button" name="upload" class="button_gen" onclick="submitForm()" value="<#CTL_upload#>" /></td>
+			  <td colspan="2"><!-- <input type="button" name="upload" class="button_gen" onclick="submitForm()" value="<#CTL_upload#>" /> -->
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="update" onclick="submitForm()">
+						<#CTL_upload#>
+						</button></td>
 			</tr>			
 		</table>
 			  </td>
@@ -532,8 +537,6 @@ function sig_check_status(){
       </table>
 		<!--===================================Ending of Main Content===========================================-->
 	</td>
-
-    <td width="10" align="center" valign="top">&nbsp;</td>
 	</tr>
 </table>
 

@@ -6,9 +6,7 @@ body {
 }
 
 .content{
-	width: 998px;
 	border:0px;
-	background:url(images/New_ui/middown_bg.png);
 	padding-bottom:24px;	/*for FAQ bottom searching bar */
 	
 	margin-top:-5px \0;	/* \0 for IE8-9 to move upper for covering the hidden form By Viz*/
@@ -140,7 +138,6 @@ body {
 /*==========================Level 3 Tab Class=================================*/
 .submenuBlock{
 	width:735px;
-	margin-top:-140px;
 /*	background-color:#547fb6;*/
 	padding-left:0px;
 	position:relative;

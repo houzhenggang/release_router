@@ -59,20 +59,10 @@
 /*=================Form Style===================*/
 .FormTitle{
 	line-height:160%;
-	font-size:12px;
-	font-family:Arial, Verdana, Arial, Helvetica, sans-serif;
-	border:1px solid #4D595D;
 	color:white;
 	position:relative;
 	*margin-top:-1px;
-	-webkit-border-bottom-right-radius: 3px;
-	-webkit-border-bottom-left-radius: 3px;
-	-moz-border-radius-bottomright: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
 	behavior: url(/PIE.htc);
-	border-radius: 0 0 3px 3px;
 }
 .FormTitle thead{
 	color:#FFF;
@@ -158,7 +148,7 @@
 	border-collapse: collapse;
 }
 .FormTable td span{
-	background-color:#475a5f;
+/*	background-color:#475a5f;	*/
 	color:#FFCC00;
 }
 .FormTable td span#wl_nmode_x_hint{

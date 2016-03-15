@@ -563,9 +563,6 @@ function show_banner(L3){// L3 = The third Level of Menu
 		banner_code +='</form>\n';
 	}	
 
-	banner_code +='<div class="banner1" align="center">\n';
-	banner_code +='</div>\n';
-
         // Router status moved to Title Bar
 	title_code +='<div class="mdl-layout__header-row">\n';
 	title_code +='<table border="0" align="center" cellpadding="0" cellspacing="0" class="statusBar">\n';
@@ -1504,28 +1501,28 @@ function show_menu(){
 	// Tabs
 	if(L3){
 		if(L2 == traffic_L2_dx && L2 != 13){ // if tm
-			tab_code = '<table border="0" cellspacing="0" cellpadding="0"><tr>\n';
+			tab_code = '<div class="mdl-tabs__tab-bar">\n';
 			for(var i=1; i < tabtitle[traffic_L2_dx-1].length; ++i){
 				if(tabtitle[traffic_L2_dx-1][i] == "")
 					continue;
 				else if(L3 == i)
-					tab_code += '<td><div class="tabclick"><span>'+ tabtitle[traffic_L2_dx-1][i] +'</span></div></td>';
+					tab_code += '<a class="mdl-tabs__tab is-active" href="' + tablink[traffic_L2_dx-1][i] + '">' + tabtitle[traffic_L2_dx-1][i] + '</a>';
 				else
-					tab_code += '<td><a onclick="location.href=\'' + tablink[traffic_L2_dx-1][i] + '\'"><div class="tab"><span>'+ tabtitle[traffic_L2_dx-1][i] +'</span></div></a></td>';
+					tab_code += '<a class="mdl-tabs__tab" href="' + tablink[traffic_L2_dx-1][i] + '">' + tabtitle[traffic_L2_dx-1][i] + '</a>';
 			}
-			tab_code += '</tr></table>\n';
+			tab_code += '</div>\n';
 		}
 		else{
-			tab_code = '<table border="0" cellspacing="0" cellpadding="0"><tr>\n';
+			tab_code = '<div class="mdl-tabs__tab-bar">\n';
 			for(var i=1; i < tabtitle[L2-1].length; ++i){
 				if(tabtitle[L2-1][i] == "")
 					continue;
 				else if(L3 == i)
-					tab_code += '<td><div class="tabclick"><span><table><tbody><tr><td>'+tabtitle[L2-1][i]+'</td></tr></tbody></table></span></div></td>';
+					tab_code += '<a class="mdl-tabs__tab is-active" href="' + tablink[L2-1][i] + '">' + tabtitle[L2-1][i] + '</a>';
 				else
-					tab_code += '<td><div class="tab"onclick="location.href=\''+tablink[L2-1][i]+'\'" style="cursor:pointer;"><span><table><tbody><tr><td>'+tabtitle[L2-1][i]+'</td></tr></tbody></table></span></div></td>';
+					tab_code += '<a class="mdl-tabs__tab" href="' + tablink[L2-1][i] + '">' + tabtitle[L2-1][i] + '</a>';
 			}
-			tab_code += '</tr></table>\n';		
+			tab_code += '</div>\n';		
 		}
 		
 		document.getElementById("tabMenu").innerHTML = tab_code;
